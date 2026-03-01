@@ -1,8 +1,8 @@
 /**
- * 🌸 Sakura Dark Theme for Jellyfin
+ * 🌸 Sakura Dark Theme v2 for Jellyfin
  * A cherry-blossom inspired dark theme
  * Based on the Catppuccin Jellyfin theme structure
- * Custom Sakura logo + rounded corners everywhere
+ * Rounded corners + Jellyfin logo HIDDEN
  *
  * HOW TO USE:
  *   Jellyfin Dashboard -> General -> Custom CSS -> Paste this entire file
@@ -407,6 +407,20 @@ legend {
 
 .starIcon {
   color: var(--yellow-color);
+}
+
+/* ============================================================
+   7. HIDE JELLYFIN LOGO
+   ============================================================ */
+.headerLogoButton img,
+.headerLogo img,
+img.imgLogoIcon {
+  display: none !important;
+}
+.adminDrawerLogo img,
+.pageTitleWithLogo img,
+.splashLogo img {
+  display: none !important;
 }
 
 /* ============================================================
