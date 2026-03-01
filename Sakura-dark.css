@@ -1,0 +1,757 @@
+/**
+ * 🌸 Sakura Dark Theme for Jellyfin
+ * A cherry-blossom inspired dark theme
+ * Based on the Catppuccin Jellyfin theme structure
+ * Custom Sakura logo + rounded corners everywhere
+ *
+ * HOW TO USE:
+ *   Jellyfin Dashboard -> General -> Custom CSS -> Paste this entire file
+ */
+
+/* ============================================================
+   1. COLOR PALETTE  (CSS Custom Properties)
+   ============================================================ */
+:root {
+  /* ---- accent / brand ---- */
+  --main-color:                   #F2A0B7;   /* sakura pink         */
+  --main-color-light:             #F8C8D8;   /* lighter petal       */
+  --main-color-dark:              #D4708F;   /* deeper sakura       */
+
+  /* ---- backgrounds ---- */
+  --main-background:              #16101E;   /* deep night          */
+  --main-background-transparent:  rgba(22, 16, 30, 0.85);
+  --second-background:            #221830;   /* card / panel        */
+  --dark-background:              #110C18;   /* darkest layer       */
+  --hover-background:             #2E2040;   /* hover / focus       */
+
+  /* ---- text ---- */
+  --main-text:                    #F0E4F0;
+  --dimmer-text:                  #A898B8;
+  --white-text:                   #FFFFFF;
+
+  /* ---- semantic ---- */
+  --red-color:                    #E8607A;
+  --green-color:                  #A8D8B4;
+  --blue-color:                   #8AB8E8;
+  --yellow-color:                 #F0D080;
+
+  /* ---- border-radius tokens ---- */
+  --radius-xs:  6px;
+  --radius-sm:  10px;
+  --radius-md:  14px;
+  --radius-lg:  18px;
+  --radius-xl:  24px;
+  --radius-pill: 9999px;
+}
+
+/* ============================================================
+   2. GLOBAL DEFAULTS
+   ============================================================ */
+* {
+  scrollbar-color: var(--hover-background) var(--second-background);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--second-background);
+  border-radius: var(--radius-pill);
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--hover-background);
+  border-radius: var(--radius-pill);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--main-color);
+}
+
+html {
+  color: var(--main-text);
+  background-color: var(--main-background);
+}
+
+/* ============================================================
+   3. ACCENT COLOR MAPPING  (text)
+   ============================================================ */
+.inputLabelFocused,
+.selectLabelFocused,
+.textareaLabelFocused,
+.button-link,
+.button-flat:hover,
+.itemAction:focus,
+.emby-tab-button-active > .emby-button-foreground,
+.emby-button-foreground:focus,
+.mdl-slider,
+.headerRight,
+.headerLeft,
+.upNextDialog-countdownText {
+  color: var(--main-color);
+}
+
+.buttonActive,
+.button-accent-flat,
+.metadataSidebarIcon,
+.layout-tv .paper-icon-button-light.show-focus:focus,
+.mdl-radio.show-focus .mdl-radio__button:focus + .mdl-radio__circles .mdl-radio__inner-circle,
+.mdl-radio.show-focus .mdl-radio__button:focus + .mdl-radio__circles .mdl-radio__outer-circle {
+  color: var(--main-color) !important;
+}
+
+/* ============================================================
+   4. ACCENT COLOR MAPPING  (backgrounds)
+   ============================================================ */
+.mdl-radio__focus-circle {
+  background: var(--main-color);
+}
+
+.layout-tv .emby-button:not(.emby-tab-button).show-focus:focus {
+  background: var(--main-color) !important;
+}
+
+.iconOsdProgressInner,
+.mdl-slider-background-lower {
+  background-color: var(--main-color);
+}
+
+.mdl-slider::-moz-range-thumb {
+  background-color: var(--main-color);
+}
+
+.mdl-slider::-webkit-slider-thumb {
+  background-color: var(--main-color);
+}
+
+.itemProgressBar.playbackProgress .itemProgressBarForeground {
+  background-color: var(--main-color) !important;
+}
+
+/* ---- accent borders ---- */
+.emby-checkbox:focus:not(:checked) + span + .checkboxOutline,
+.mdl-spinner__layer,
+.itemSelectionPanel {
+  border-color: var(--main-color);
+}
+
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select-withcolor:focus {
+  border-color: var(--main-color) !important;
+}
+
+.emby-checkbox:checked + span + .checkboxOutline,
+.itemProgressBarForeground {
+  color: var(--main-text);
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+/* ---- buttons on dark ---- */
+.button-cancel,
+.button-cancel:focus {
+  color: var(--main-color);
+  background: var(--main-background);
+}
+
+.paper-icon-button-light:hover:not(:disabled),
+.paper-icon-button-light:active:not(:disabled),
+.listItem:hover,
+.listItem:focus,
+.navMenuOption:hover,
+.navMenuOption:focus {
+  color: var(--main-color) !important;
+  background-color: var(--hover-background) !important;
+}
+
+/* icons on accent background */
+.selectionCommandsPanel > button > .material-icons,
+.checkboxOutline .checkboxIcon-checked {
+  color: var(--main-background);
+}
+
+.selectionCommandsPanel .itemSelectionCount,
+.layout-tv .emby-button:not(.emby-tab-button).show-focus:focus .listItem,
+.layout-tv .emby-button:not(.emby-tab-button).show-focus:focus .listItemBodyText {
+  color: var(--main-background) !important;
+}
+
+/* ---- submit / action buttons ---- */
+.button-submit,
+.button-submit:focus,
+.button-alt,
+.button-alt:focus,
+.submit,
+.submit:focus,
+#btnAddPerson,
+#btnAddPerson:focus,
+.btnAddTrigger,
+.btnAddTrigger:focus,
+.btnAddUser,
+.btnAddUser:focus,
+::selection {
+  color: var(--main-background);
+  background: var(--main-color);
+}
+
+::-moz-selection {
+  color: var(--main-background);
+  background: var(--main-color);
+}
+
+.indicator,
+.selectionCommandsPanel,
+.btnRefresh,
+.programCell:focus,
+div[data-role="controlgroup"] a.ui-btn-active {
+  color: var(--main-background) !important;
+  background-color: var(--main-color) !important;
+}
+
+/* ---- destructive buttons ---- */
+#btnShutdown,
+#deviceDeleteAll,
+.btnDeleteImage,
+.btnResetPassword {
+  color: var(--main-background) !important;
+  background: var(--red-color) !important;
+}
+
+.playedIndicator {
+  color: var(--main-background);
+  background-color: var(--green-color);
+}
+
+/* ============================================================
+   5. BACKGROUNDS
+   ============================================================ */
+.backdropContainer,
+.mainDrawer,
+.cardBox,
+.paperList {
+  background: var(--main-background);
+}
+
+.emby-select-withcolor > option,
+.backgroundContainer,
+.nowPlayingPlaylist,
+.collapseContent {
+  background-color: var(--main-background);
+}
+
+.formDialogHeader,
+.dialog,
+.dashboardGeneralForm,
+html {
+  color: var(--main-text);
+  background-color: var(--main-background);
+}
+
+.detailRibbon,
+.backgroundContainer.withBackdrop {
+  background-color: var(--main-background-transparent);
+}
+
+.devicesList .cardContent.defaultCardBackground,
+.cardContent.defaultCardBackground:has(.sessionNowPlayingContent) {
+  background-color: var(--dark-background) !important;
+}
+
+.playlistSectionButton,
+.noBackdropTransparency .detailPagePrimaryContainer {
+  background: var(--second-background);
+}
+
+.emby-input,
+.emby-textarea,
+.emby-select {
+  background: var(--second-background);
+  border-color: var(--second-background);
+}
+
+.iconOsd,
+.logoScreenSaver,
+.programCell-active,
+.cardContent.defaultCardBackground,
+.cardContent .defaultCardBackground,
+.detailPageSecondaryContainer {
+  background-color: var(--second-background) !important;
+}
+
+.sliderBubble,
+.skinHeader:not(.osdHeader),
+.listItemIcon:not(.listItemIcon-transparent),
+.infoBanner,
+.nowPlayingBar {
+  color: var(--main-text);
+  background-color: var(--second-background) !important;
+}
+
+div[data-role="controlgroup"] .emby-button,
+.fab,
+.toast,
+.raised {
+  color: var(--main-text) !important;
+  background-color: var(--second-background) !important;
+}
+
+.alphaPickerButton {
+  color: var(--hover-background);
+}
+
+.mediaInfoText {
+  background: var(--hover-background);
+}
+
+.iconOsdProgressOuter,
+.mdl-slider-background-flex,
+.formDialogHeader:not(.formDialogHeader-clear),
+.formDialogFooter:not(.formDialogFooter-clear),
+.cardBox:not(.visualCardBox) .cardPadder {
+  background-color: var(--hover-background);
+}
+
+.itemProgressBar.backgroundProgress .itemProgressBarForeground {
+  background-color: var(--hover-background) !important;
+}
+
+.listItem-border {
+  border-color: var(--hover-background) !important;
+}
+
+/* ============================================================
+   6. TYPOGRAPHY / TEXT COLORS
+   ============================================================ */
+.sectionTitle,
+.cardText,
+.pageTitle,
+.detailSectionContent,
+.trackSelections,
+.emby-input,
+.checkboxLabel,
+.itemDetailsGroup,
+.checkboxOutline,
+.emby-textarea,
+.emby-select,
+.label,
+.selectLabel,
+.sidebarHeader,
+.listItem,
+.listItemBodyText,
+.dashboardGeneralForm,
+.dashboardSections,
+.navMenuOption,
+.inputLabel,
+.content-primary,
+.itemName,
+.searchfields-icon,
+.paper-icon-button-light,
+.emby-button-foreground,
+.iconOsd .iconOsdIcon,
+.upNextContainer,
+.selectionCommandsPanel > button:hover > .material-icons,
+.paperListLabel,
+legend {
+  color: var(--main-text);
+}
+
+.mediaInfoOfficialRating,
+.guideProgramNameCaretIcon,
+.mediaInfoItem,
+.listItemButton,
+.checkboxListLabel,
+.lnkMediaFolder {
+  color: var(--main-text) !important;
+}
+
+.alphaPickerRow,
+.devices-subheader,
+.cardText-secondary,
+.nowPlayingBarSecondaryText {
+  color: var(--dimmer-text);
+}
+
+.fieldDescription,
+.alphaPickerButton-selected,
+.secondary {
+  color: var(--dimmer-text) !important;
+}
+
+.mdl-slider-background-upper {
+  background-color: var(--dimmer-text);
+}
+
+.osdTextContainer,
+.osdTimeText,
+.transparentDocument .paper-icon-button-light,
+.transparentDocument .pageTitle,
+.cardOverlayContainer .paper-icon-button-light,
+.sessionAppName,
+.sessionNowPlayingInfo,
+.sessionNowPlayingTime {
+  color: var(--white-text);
+}
+
+.playstatebutton-icon-played,
+.ratingbutton-icon-withrating {
+  color: var(--red-color);
+}
+
+.notification_important {
+  color: var(--red-color) !important;
+}
+
+.notifications {
+  color: var(--blue-color) !important;
+}
+
+.starIcon {
+  color: var(--yellow-color);
+}
+
+/* ============================================================
+   7. 🌸 SAKURA LOGO REPLACEMENT
+   ============================================================ */
+
+/* Hide the default Jellyfin banner text/image and replace with Sakura */
+.adminDrawerLogo,
+.pageTitleWithLogo {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 120'%3E%3Cdefs%3E%3CradialGradient id='p' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23FFD4E5'/%3E%3Cstop offset='100%25' stop-color='%23F2A0B7'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg transform='translate(10,10) scale(0.9)'%3E%3Cg transform='translate(50,50)'%3E%3Cg%3E%3Cellipse cx='0' cy='-22' rx='10' ry='22' fill='url(%23p)' transform='rotate(0)' opacity='0.95'/%3E%3Cellipse cx='0' cy='-22' rx='10' ry='22' fill='url(%23p)' transform='rotate(72)' opacity='0.90'/%3E%3Cellipse cx='0' cy='-22' rx='10' ry='22' fill='url(%23p)' transform='rotate(144)' opacity='0.85'/%3E%3Cellipse cx='0' cy='-22' rx='10' ry='22' fill='url(%23p)' transform='rotate(216)' opacity='0.90'/%3E%3Cellipse cx='0' cy='-22' rx='10' ry='22' fill='url(%23p)' transform='rotate(288)' opacity='0.95'/%3E%3C/g%3E%3Ccircle cx='0' cy='0' r='7' fill='%23F7E6A0'/%3E%3Ccircle cx='-3' cy='-3' r='1.5' fill='%23E8C060'/%3E%3Ccircle cx='3' cy='-2' r='1.5' fill='%23E8C060'/%3E%3Ccircle cx='0' cy='3' r='1.5' fill='%23E8C060'/%3E%3C/g%3E%3Ctext x='120' y='68' font-family='Quicksand, Nunito, Comfortaa, Segoe UI, sans-serif' font-size='50' font-weight='700' fill='%23F2A0B7'%3ESakura%3C/text%3E%3C/g%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: left center !important;
+  background-size: contain !important;
+  color: transparent !important;
+  height: 54px;
+  min-width: 200px;
+}
+
+/* Top-left header logo (the small jellyfish icon area) */
+.headerLogo img,
+img.imgLogoIcon {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='p2' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23FFD4E5'/%3E%3Cstop offset='100%25' stop-color='%23F2A0B7'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg transform='translate(50,50)'%3E%3Cellipse cx='0' cy='-22' rx='11' ry='23' fill='url(%23p2)' transform='rotate(0)' opacity='0.95'/%3E%3Cellipse cx='0' cy='-22' rx='11' ry='23' fill='url(%23p2)' transform='rotate(72)' opacity='0.90'/%3E%3Cellipse cx='0' cy='-22' rx='11' ry='23' fill='url(%23p2)' transform='rotate(144)' opacity='0.85'/%3E%3Cellipse cx='0' cy='-22' rx='11' ry='23' fill='url(%23p2)' transform='rotate(216)' opacity='0.90'/%3E%3Cellipse cx='0' cy='-22' rx='11' ry='23' fill='url(%23p2)' transform='rotate(288)' opacity='0.95'/%3E%3Ccircle cx='0' cy='0' r='8' fill='%23F7E6A0'/%3E%3Ccircle cx='-3' cy='-3' r='2' fill='%23E8C060'/%3E%3Ccircle cx='3' cy='-2' r='2' fill='%23E8C060'/%3E%3Ccircle cx='0' cy='4' r='2' fill='%23E8C060'/%3E%3C/g%3E%3C/svg%3E");
+  width: 40px !important;
+  height: 40px !important;
+}
+
+/* Login page Jellyfin banner */
+.splashLogo {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150'%3E%3Cdefs%3E%3CradialGradient id='p3' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23FFD4E5'/%3E%3Cstop offset='100%25' stop-color='%23F2A0B7'/%3E%3C/radialGradient%3E%3Cfilter id='glow'%3E%3CfeGaussianBlur stdDeviation='3' result='blur'/%3E%3CfeMerge%3E%3CfeMergeNode in='blur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg transform='translate(10,10)'%3E%3Cg transform='translate(65,65)' filter='url(%23glow)'%3E%3Cellipse cx='0' cy='-30' rx='14' ry='30' fill='url(%23p3)' transform='rotate(0)' opacity='0.95'/%3E%3Cellipse cx='0' cy='-30' rx='14' ry='30' fill='url(%23p3)' transform='rotate(72)' opacity='0.90'/%3E%3Cellipse cx='0' cy='-30' rx='14' ry='30' fill='url(%23p3)' transform='rotate(144)' opacity='0.85'/%3E%3Cellipse cx='0' cy='-30' rx='14' ry='30' fill='url(%23p3)' transform='rotate(216)' opacity='0.90'/%3E%3Cellipse cx='0' cy='-30' rx='14' ry='30' fill='url(%23p3)' transform='rotate(288)' opacity='0.95'/%3E%3Ccircle cx='0' cy='0' r='10' fill='%23F7E6A0'/%3E%3Ccircle cx='-4' cy='-4' r='2.2' fill='%23E8C060'/%3E%3Ccircle cx='4' cy='-3' r='2.2' fill='%23E8C060'/%3E%3Ccircle cx='0' cy='5' r='2.2' fill='%23E8C060'/%3E%3C/g%3E%3Ctext x='150' y='88' font-family='Quicksand, Nunito, Comfortaa, Segoe UI, sans-serif' font-size='62' font-weight='700' fill='%23F2A0B7' filter='url(%23glow)'%3ESakura%3C/text%3E%3C/g%3E%3C/svg%3E");
+  max-width: 400px !important;
+}
+
+/* ============================================================
+   8. 🔲 ROUNDED CORNERS  (bo góc)
+   ============================================================ */
+
+/* --- Cards --- */
+.cardBox {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+}
+.cardOverlayContainer {
+  border-radius: var(--radius-lg) !important;
+}
+.cardImageContainer,
+.cardImage,
+.cardPadder {
+  border-radius: var(--radius-lg) !important;
+}
+.cardContent {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
+}
+.cardBox:not(.visualCardBox) .cardPadder {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+}
+
+/* --- Buttons --- */
+.raised,
+.button-submit,
+.button-cancel,
+.button-alt,
+.emby-button,
+.fab,
+#btnAddPerson,
+.btnAddTrigger,
+.btnAddUser,
+.submit {
+  border-radius: var(--radius-md) !important;
+}
+
+.emby-tab-button {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+}
+
+/* --- Inputs / Selects / Textareas --- */
+.emby-input,
+.emby-textarea,
+.emby-select,
+.emby-select-withcolor {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* --- Dialogs / Modals --- */
+.dialog,
+.formDialogHeader,
+.formDialogFooter,
+.dialogContainer,
+.focuscontainer-x {
+  border-radius: var(--radius-xl) !important;
+}
+.formDialogHeader {
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+}
+.formDialogFooter {
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl) !important;
+}
+
+/* --- Lists --- */
+.paperList {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+}
+.listItem {
+  border-radius: var(--radius-sm) !important;
+}
+.listItemIcon:not(.listItemIcon-transparent) {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* --- Navigation drawer --- */
+.mainDrawer {
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0 !important;
+}
+.navMenuOption {
+  border-radius: var(--radius-sm) !important;
+  margin: 2px 8px;
+}
+
+/* --- Header --- */
+.skinHeader:not(.osdHeader) {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
+}
+
+/* --- Now Playing Bar --- */
+.nowPlayingBar {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+}
+
+/* --- Toast notifications --- */
+.toast {
+  border-radius: var(--radius-md) !important;
+}
+
+/* --- Media Info badges --- */
+.mediaInfoText {
+  border-radius: var(--radius-xs) !important;
+}
+.mediaInfoOfficialRating {
+  border-radius: var(--radius-xs) !important;
+}
+
+/* --- Progress bars --- */
+.itemProgressBar {
+  border-radius: var(--radius-pill) !important;
+  overflow: hidden;
+}
+.itemProgressBarForeground {
+  border-radius: var(--radius-pill) !important;
+}
+
+/* --- Played indicator --- */
+.playedIndicator {
+  border-radius: 0 0 0 var(--radius-sm) !important;
+}
+.indicator {
+  border-radius: var(--radius-xs) !important;
+}
+
+/* --- Info banner --- */
+.infoBanner {
+  border-radius: var(--radius-md) !important;
+}
+
+/* --- Images in detail pages --- */
+.detailImageContainer {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+}
+
+/* --- Slider / range thumb --- */
+.mdl-slider::-webkit-slider-thumb {
+  border-radius: 50% !important;
+}
+.mdl-slider::-moz-range-thumb {
+  border-radius: 50% !important;
+}
+.sliderBubble {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* --- Selection panel --- */
+.selectionCommandsPanel {
+  border-radius: var(--radius-md) !important;
+}
+
+/* --- Checkbox --- */
+.checkboxOutline {
+  border-radius: var(--radius-xs) !important;
+}
+
+/* --- Search field --- */
+.searchfields-icon {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* --- Season / episode cards --- */
+.itemsContainer .card {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+}
+
+/* --- User card on login --- */
+.card.overflowSquareCard,
+.card.squareCard,
+.card.portraitCard,
+.card.backdropCard,
+.card.bannerCard {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+}
+
+/* ============================================================
+   9. EXTRA POLISH & ANIMATIONS
+   ============================================================ */
+
+/* Subtle shadow on cards */
+.cardBox {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cardBox:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(242, 160, 183, 0.18);
+}
+
+/* Glow effect on focused / hovered buttons */
+.button-submit:hover,
+.button-submit:focus {
+  box-shadow: 0 0 16px rgba(242, 160, 183, 0.45);
+}
+.emby-button:hover {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Smooth drawer open */
+.mainDrawer {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth header backdrop */
+.skinHeader {
+  transition: background-color 0.3s ease;
+}
+
+/* Make backdrop images a bit darker for readability */
+.backgroundContainer.withBackdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 16, 30, 0.6) 0%,
+    rgba(22, 16, 30, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+/* Tab bar active indicator sakura color */
+.emby-tab-button-active {
+  border-bottom: 3px solid var(--main-color) !important;
+  color: var(--main-color) !important;
+}
+
+/* Input focus ring glow */
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select-withcolor:focus {
+  box-shadow: 0 0 0 3px rgba(242, 160, 183, 0.25);
+  outline: none;
+}
+
+/* Played indicator badge */
+.playedIndicator {
+  font-weight: 700;
+}
+
+/* Link hover */
+a:hover {
+  color: var(--main-color-light) !important;
+}
+
+/* ============================================================
+   10. FALLING SAKURA PETALS ANIMATION  (purely decorative)
+   ============================================================ */
+@keyframes sakuraFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(45vh) rotate(180deg) translateX(40px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* Login page only – subtle petal rain via pseudo-elements on body */
+.loginPage::before,
+.loginPage::after {
+  content: "🌸";
+  position: fixed;
+  top: -5vh;
+  font-size: 1.4rem;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+  animation: sakuraFall 8s ease-in-out infinite;
+}
+.loginPage::before {
+  left: 18%;
+  animation-delay: 0s;
+  animation-duration: 10s;
+}
+.loginPage::after {
+  left: 72%;
+  animation-delay: 4s;
+  animation-duration: 12s;
+}
+
+/* ============================================================
+   11. MOBILE / RESPONSIVE TWEAKS
+   ============================================================ */
+@media (max-width: 600px) {
+  .cardBox {
+    border-radius: var(--radius-md) !important;
+  }
+  .skinHeader:not(.osdHeader) {
+    border-radius: 0 !important;
+  }
+  .mainDrawer {
+    border-radius: 0 !important;
+  }
+}
+
+/* ============================================================
+   12. PRINT-SAFE (avoid accidental blobs)
+   ============================================================ */
+@media print {
+  * {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+}
